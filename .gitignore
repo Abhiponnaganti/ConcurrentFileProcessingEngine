@@ -1,0 +1,41 @@
+# Build output
+build/
+build-*/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+
+# Binaries and generated artifacts
+bin/
+lib/
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+*.out
+benchmark_*.txt
+
+# Runtime output
+output/*
+!output/.gitkeep
+
+# Local input data can be large
+input/*
+!input/.gitkeep
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Test and coverage artifacts
+Testing/
+coverage/
+*.gcda
+*.gcno
+*.profraw
+*.profdata

@@ -1,0 +1,9 @@
+{
+  "input_directory": "input",
+  "output_directory": "output",
+  "thread_count": 4,
+  "chunk_size_bytes": 4194304,
+  "top_n": 20,
+  "mode": "word_frequency",
+  "output_format": "json"
+}
