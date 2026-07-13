@@ -206,7 +206,6 @@ The benchmark executable reports file size, runtime, throughput, speedup over th
 
 The snapshot below was generated locally from the current code with a 256 MiB fixture, which is about 268 MB. Treat it as a machine-specific measurement, not a portable performance guarantee. The terminal screenshot shows the raw Google Benchmark output for the thread-pool run; the table uses median rows from the same recorded benchmark report.
 
-This run supports describing the project as a concurrent C++ engine for 245MB+ text/log workloads using POSIX memory-mapped I/O and a custom work-stealing scheduler. On this machine, the thread-pool median measured 3.82x higher throughput than the `fread` baseline and sustained 882.07 MiB/s, comfortably above 695 MB/s.
 
 ![Terminal benchmark output](docs/assets/benchmark-terminal-proof.png)
 
