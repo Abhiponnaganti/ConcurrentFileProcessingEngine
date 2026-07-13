@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="460" viewBox="0 0 940 460" role="img">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="32" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" fill="#1F2937">Chunk latency percentiles</text>
+<text x="32" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#6B7280">Lower is better. Values are per-chunk latency from the same benchmark run.</text>
+<line x1="190" y1="350.0" x2="850" y2="350.0" stroke="#E5E7EB" stroke-width="1"/>
+<text x="178" y="354.0" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#6B7280">0.0</text>
+<line x1="190" y1="292.5" x2="850" y2="292.5" stroke="#E5E7EB" stroke-width="1"/>
+<text x="178" y="296.5" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#6B7280">3.0</text>
+<line x1="190" y1="235.0" x2="850" y2="235.0" stroke="#E5E7EB" stroke-width="1"/>
+<text x="178" y="239.0" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#6B7280">6.0</text>
+<line x1="190" y1="177.5" x2="850" y2="177.5" stroke="#E5E7EB" stroke-width="1"/>
+<text x="178" y="181.5" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#6B7280">9.1</text>
+<line x1="190" y1="120.0" x2="850" y2="120.0" stroke="#E5E7EB" stroke-width="1"/>
+<text x="178" y="124.0" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#6B7280">12.1</text>
+<rect x="260" y="266.9" width="34" height="83.1" rx="5" fill="#60A5FA"/>
+<text x="277.0" y="260.9" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#1F2937">4.4</text>
+<rect x="306" y="256.6" width="34" height="93.4" rx="5" fill="#34D399"/>
+<text x="323.0" y="250.6" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#1F2937">4.9</text>
+<rect x="352" y="250.0" width="34" height="100.0" rx="5" fill="#F59E0B"/>
+<text x="369.0" y="244.0" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#1F2937">5.3</text>
+<text x="318" y="384" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1F2937">fread single-thread</text>
+<rect x="475" y="266.4" width="34" height="83.6" rx="5" fill="#60A5FA"/>
+<text x="492.0" y="260.4" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#1F2937">4.4</text>
+<rect x="521" y="205.7" width="34" height="144.3" rx="5" fill="#34D399"/>
+<text x="538.0" y="199.7" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#1F2937">7.6</text>
+<rect x="567" y="163.9" width="34" height="186.1" rx="5" fill="#F59E0B"/>
+<text x="584.0" y="157.9" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#1F2937">9.8</text>
+<text x="533" y="384" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1F2937">mmap single-thread</text>
+<rect x="690" y="251.6" width="34" height="98.4" rx="5" fill="#60A5FA"/>
+<text x="707.0" y="245.6" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#1F2937">5.2</text>
+<rect x="736" y="198.7" width="34" height="151.3" rx="5" fill="#34D399"/>
+<text x="753.0" y="192.7" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#1F2937">8.0</text>
+<rect x="782" y="120.0" width="34" height="230.0" rx="5" fill="#F59E0B"/>
+<text x="799.0" y="114.0" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#1F2937">12.1</text>
+<text x="748" y="384" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1F2937">mmap thread pool</text>
+<rect x="330" y="392" width="14" height="14" rx="3" fill="#60A5FA"/>
+<text x="352" y="404" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1F2937">p50</text>
+<rect x="420" y="392" width="14" height="14" rx="3" fill="#34D399"/>
+<text x="442" y="404" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1F2937">p95</text>
+<rect x="510" y="392" width="14" height="14" rx="3" fill="#F59E0B"/>
+<text x="532" y="404" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1F2937">p99</text>
+<text x="58" y="236" transform="rotate(-90 58 236)" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#6B7280">milliseconds</text>
+</svg>

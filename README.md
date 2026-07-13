@@ -198,10 +198,16 @@ To write Google Benchmark output as JSON:
 
 The benchmark executable reports file size, runtime, throughput, speedup over the measured `fread` baseline, and p50/p95/p99 chunk latency. It creates a deterministic text fixture under the system temporary directory.
 
-No benchmark numbers are included here because they depend on machine, compiler, build type, and current system load.
+The snapshot below was generated locally from the current code with a 16 MiB fixture. Treat it as a sanity check for this machine, not as a portable performance claim.
+
+![Benchmark throughput](docs/assets/benchmark-throughput.svg)
+
+![Speedup over fread baseline](docs/assets/benchmark-speedup.svg)
+
+![Chunk latency percentiles](docs/assets/benchmark-latency.svg)
 
 | Strategy | Dataset | File Size | Threads | Runtime | Throughput | Speedup | p50 Chunk | p95 Chunk | p99 Chunk |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `fread` single-threaded | Generated fixture | TBD | 1 | TBD | TBD | 1.00x | TBD | TBD | TBD |
-| `mmap` single-threaded | Generated fixture | TBD | 1 | TBD | TBD | TBD | TBD | TBD | TBD |
-| `mmap` thread pool | Generated fixture | TBD | 4 | TBD | TBD | TBD | TBD | TBD | TBD |
+| `fread` single-threaded | Generated fixture | 16 MiB | 1 | 75.72 ms | 211.29 MiB/s | 1.00x | 4.37 ms | 4.91 ms | 5.26 ms |
+| `mmap` single-threaded | Generated fixture | 16 MiB | 1 | 79.87 ms | 200.33 MiB/s | 0.92x | 4.40 ms | 7.59 ms | 9.78 ms |
+| `mmap` thread pool | Generated fixture | 16 MiB | 4 | 24.43 ms | 654.84 MiB/s | 3.00x | 5.18 ms | 7.96 ms | 12.09 ms |
