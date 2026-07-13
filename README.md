@@ -1,10 +1,10 @@
 # Concurrent File Processing Engine
 
-Memory-mapped word-frequency analysis with chunked parallel processing and a custom work-stealing thread pool.
+Memory-mapped word-frequency analysis for large text and log files.
 
 ## Overview
 
-Concurrent File Processing Engine scans regular files from an input directory, tokenizes their contents, counts word frequencies, and writes JSON summaries. It is built around POSIX memory mapping, fixed-size chunking, per-worker local aggregation, and a merge step that computes totals and top words.
+Concurrent File Processing Engine scans regular files from an input directory, tokenizes their contents, counts word frequencies, and writes JSON summaries. It is built around POSIX memory mapping, fixed-size chunking, a custom work-stealing scheduler, per-thread local aggregation, and a final merge step that computes totals and top words.
 
 The project is intentionally small. It focuses on the mechanics of file mapping, chunk boundary correctness, and thread-pool scheduling rather than adding a broad feature set.
 
@@ -14,7 +14,7 @@ The project is intentionally small. It focuses on the mechanics of file mapping,
 - Finds regular files in the configured input directory.
 - Maps each file with POSIX `mmap`.
 - Splits mapped data into fixed-size chunks.
-- Processes chunks through a custom work-stealing thread pool.
+- Processes chunks through a custom work-stealing scheduler.
 - Counts alphanumeric tokens case-insensitively.
 - Merges per-thread word maps after processing completes.
 - Writes one JSON result per file and a combined `benchmark_report.json`.
@@ -196,9 +196,19 @@ To write Google Benchmark output as JSON:
 ./build/cfpe_benchmarks --benchmark_out=output/google_benchmark_report.json --benchmark_out_format=json
 ```
 
-The benchmark executable reports file size, runtime, throughput, speedup over the measured `fread` baseline, and p50/p95/p99 chunk latency. It creates a deterministic text fixture under the system temporary directory.
+To collect repeated measurements and median rows:
 
-The snapshot below was generated locally from the current code with a 16 MiB fixture. Treat it as a sanity check for this machine, not as a portable performance claim.
+```bash
+./build/cfpe_benchmarks --benchmark_min_time=0.05s --benchmark_repetitions=3 --benchmark_report_aggregates_only=false --benchmark_out=output/google_benchmark_report.json --benchmark_out_format=json
+```
+
+The benchmark executable reports file size, runtime, throughput, speedup over the measured `fread` baseline, and p50/p95/p99 chunk latency. It creates a deterministic text/log-style fixture under the system temporary directory.
+
+The snapshot below was generated locally from the current code with a 256 MiB fixture, which is about 268 MB. Treat it as a machine-specific measurement, not a portable performance guarantee. The terminal screenshot shows the raw Google Benchmark output for the thread-pool run; the table uses median rows from the same recorded benchmark report.
+
+This run supports describing the project as a concurrent C++ engine for 245MB+ text/log workloads using POSIX memory-mapped I/O and a custom work-stealing scheduler. On this machine, the thread-pool median measured 3.82x higher throughput than the `fread` baseline and sustained 882.07 MiB/s, comfortably above 695 MB/s.
+
+![Terminal benchmark output](docs/assets/benchmark-terminal-proof.png)
 
 ![Benchmark throughput](docs/assets/benchmark-throughput.svg)
 
@@ -208,6 +218,6 @@ The snapshot below was generated locally from the current code with a 16 MiB fix
 
 | Strategy | Dataset | File Size | Threads | Runtime | Throughput | Speedup | p50 Chunk | p95 Chunk | p99 Chunk |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `fread` single-threaded | Generated fixture | 16 MiB | 1 | 75.72 ms | 211.29 MiB/s | 1.00x | 4.37 ms | 4.91 ms | 5.26 ms |
-| `mmap` single-threaded | Generated fixture | 16 MiB | 1 | 79.87 ms | 200.33 MiB/s | 0.92x | 4.40 ms | 7.59 ms | 9.78 ms |
-| `mmap` thread pool | Generated fixture | 16 MiB | 4 | 24.43 ms | 654.84 MiB/s | 3.00x | 5.18 ms | 7.96 ms | 12.09 ms |
+| `fread` single-threaded | Generated fixture | 256 MiB | 1 | 1125.76 ms | 227.40 MiB/s | 1.00x | 4.20 ms | 4.43 ms | 5.10 ms |
+| `mmap` single-threaded | Generated fixture | 256 MiB | 1 | 1148.27 ms | 222.94 MiB/s | 0.96x | 4.21 ms | 4.45 ms | 6.83 ms |
+| `mmap` thread pool | Generated fixture | 256 MiB | 4 | 290.23 ms | 882.07 MiB/s | 3.82x | 4.48 ms | 4.79 ms | 4.91 ms |

@@ -25,6 +25,7 @@ namespace {
 constexpr std::size_t kMiB = 1024 * 1024;
 constexpr std::size_t kDefaultChunkSize = 1024 * 1024;
 constexpr std::size_t kDefaultThreadCount = 4;
+constexpr int64_t kBenchmarkFileSizeMiB = 256;
 
 struct RunMetrics {
     std::uint64_t bytesProcessed{0};
@@ -290,9 +291,9 @@ void BM_MMapThreadPool(benchmark::State& state)
     state.counters["thread_count"] = benchmark::Counter(static_cast<double>(threadCount));
 }
 
-BENCHMARK(BM_FreadSingleThreaded)->Arg(16)->Unit(benchmark::kMillisecond);
-BENCHMARK(BM_MMapSingleThreaded)->Arg(16)->Unit(benchmark::kMillisecond);
-BENCHMARK(BM_MMapThreadPool)->Args({16, static_cast<int64_t>(kDefaultThreadCount)})
+BENCHMARK(BM_FreadSingleThreaded)->Arg(kBenchmarkFileSizeMiB)->Unit(benchmark::kMillisecond);
+BENCHMARK(BM_MMapSingleThreaded)->Arg(kBenchmarkFileSizeMiB)->Unit(benchmark::kMillisecond);
+BENCHMARK(BM_MMapThreadPool)->Args({kBenchmarkFileSizeMiB, static_cast<int64_t>(kDefaultThreadCount)})
     ->Unit(benchmark::kMillisecond);
 
 } // namespace
